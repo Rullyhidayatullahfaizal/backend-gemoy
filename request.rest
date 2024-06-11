@@ -1,0 +1,33 @@
+###
+GET http://localhost:5000/users
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiQnVuZyB0b3dlbCIsImlhdCI6MTcxODA4MTkxMSwiZXhwIjoxNzE4MDgxOTI2fQ.zEpBY_cD_g4joTBexn72Vj-XnhzBIztWmGdYnPPL5Gk
+
+
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "username":"Bung towel",
+  "nama_kelas":"pendekawa",
+  "password":"123456",
+  "confPassword":"123456"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "username":"Bung towel",
+  "password":"123456"
+}
+
+
+###
+GET http://localhost:5000/token
+
+
+###
+DELETE http://localhost:5000/logout
