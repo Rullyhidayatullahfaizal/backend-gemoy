@@ -1,6 +1,6 @@
 ###
 GET http://localhost:5000/users
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiQnVuZyB0b3dlbCIsImlhdCI6MTcxODA4MTkxMSwiZXhwIjoxNzE4MDgxOTI2fQ.zEpBY_cD_g4joTBexn72Vj-XnhzBIztWmGdYnPPL5Gk
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQnVuZyB0b3dlbCIsImlhdCI6MTcxODE3ODM1MCwiZXhwIjoxNzE4MTc4MzY1fQ.brHk8uXz6feN7NQlZW8-zCqWzyPL5D07qgv-CUh3P6g
 
 
 
@@ -9,8 +9,9 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "username":"Bung towel",
-  "nama_kelas":"pendekawa",
+  "username":"topik",
+  "email":"taufik58@gmail.com",
+  "nama_kelas":"pancasila",
   "password":"123456",
   "confPassword":"123456"
 }
@@ -20,8 +21,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "username":"Bung towel",
-  "password":"123456"
+  "username":"bung towel",
+  "password":"reset"
 }
 
 

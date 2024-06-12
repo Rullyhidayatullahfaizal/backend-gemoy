@@ -1,12 +1,16 @@
 import Users from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
+import { kirimEmail } from '../helpers/index.js';
+import { where } from "sequelize";
+
+
 
 export const getUsers = async(req,res) => {
     try {
         const users = await Users.findAll({
             attributes:[
-                "id","username","nama_kelas"
+                "id","username","email","nama_kelas"
             ]
         });
         res.json(users)
@@ -16,13 +20,14 @@ export const getUsers = async(req,res) => {
 }
 
 export const register = async(req,res) => {
-    const {username,nama_kelas,password,confPassword} = req.body;
+    const {username,email,nama_kelas,password,confPassword} = req.body;
     if(password != confPassword) return res.status(400).json({msg:"password dan confirm password tidak cocok"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password,salt);
     try {
         await Users.create({
             username:username,
+            email:email,
             nama_kelas:nama_kelas,
             password:hashPassword
         })
@@ -83,3 +88,62 @@ export const Logout = async(req, res) => {
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
 }
+
+export const ForgotPassword = async (req, res) => {
+    const { email } = req.body;
+  
+    try {
+      console.log("Email yang diterima:", email);
+  
+      // Mencari pengguna berdasarkan email
+      const user = await Users.findOne({ where: { email: email } });
+  
+      // Log untuk memeriksa apakah pengguna ditemukan
+      if (!user) {
+        console.log("Pengguna tidak ditemukan");
+        return res.status(404).json({ 
+            message: "Email not found" 
+        });
+      }
+
+      const token = jwt.sign({
+        iduser:user._id
+      },process.env.ACCESS_TOKEN_SECRET)
+
+      await user.update(
+        { resetPasswordToken: token }, // Data yang ingin diupdate
+        { where: { id: user.id } }     // Kondisi untuk memilih record yang akan diupdate
+      );
+
+      const templateEmail = {
+        from : "Gemoy aplikasi",
+        to : email,
+        subject :"Link reset Password",
+        html :`<p> silahkan klik link dibawah ini untuk reset password</p><p>${process.env.CLIENT_URL}/resetpassword/${token}</p>`
+      }
+      kirimEmail(templateEmail) 
+      // Log untuk memeriksa email pengguna yang ditemukan
+      return res.status(200).json({
+        status : true,
+        message: "link terkirim",
+        // email: user.email  // Mengirimkan hanya email dalam respons
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      return res.status(500).json({ message: "Server error" });
+    }
+  };
+
+ export const ResetPassword = async(req,res) =>{
+    const {token,password} = req.body
+    const user = await Users.findOne({where :{resetPasswordToken:token}})
+    if(user){
+        const hashPassword = await bcrypt.hash(password,10)
+        user.password = hashPassword
+        await user.save()
+        return res.status(201).json({
+            status:true,
+            message:"password berhasil diganti"
+        })
+    }
+ } 
