@@ -1,34 +1,32 @@
 ###
-GET http://localhost:5000/users
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQnVuZyB0b3dlbCIsImlhdCI6MTcxODE3ODM1MCwiZXhwIjoxNzE4MTc4MzY1fQ.brHk8uXz6feN7NQlZW8-zCqWzyPL5D07qgv-CUh3P6g
+GET http://localhost:5000/admins
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiZ2FuamFyIiwiaWF0IjoxNzE4MjAxNTcwLCJleHAiOjE3MTgyMDE2MzB9.T8vdWcL4SNUFSsFDy7z0-xQzjAHpepy5KVyBuyvTYX8
 
 
 
 ###
-POST http://localhost:5000/users
+POST http://localhost:5000/admin-register
 Content-Type: application/json
 
 {
-  "username":"topik",
-  "email":"taufik58@gmail.com",
-  "nama_kelas":"pancasila",
+  "username":"ganjar",
   "password":"123456",
   "confPassword":"123456"
 }
 
 ###
-POST http://localhost:5000/login
+POST http://localhost:5000/admin-login
 Content-Type: application/json
 
 {
-  "username":"bung towel",
-  "password":"reset"
+  "username":"ganjar",
+  "password":"123456"
 }
 
 
 ###
-GET http://localhost:5000/token
+GET http://localhost:5000/admin-token
 
 
 ###
-DELETE http://localhost:5000/logout
+DELETE http://localhost:5000/admin-logout

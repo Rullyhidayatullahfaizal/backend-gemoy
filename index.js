@@ -4,14 +4,14 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/database.js";
 import router from "./routes/index.js";
-import Users from "./models/userModel.js";
+import Admin from "./models/adminModel.js";
 import bodyParser from "body-parser";
 dotenv.config()
 const app = express();
 try {
     await db.authenticate();
     console.log("database connected");
-    // await Users.sync()
+    await Admin.sync()
 } catch (error) {
     console.error(error)
 }
