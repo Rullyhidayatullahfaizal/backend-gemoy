@@ -3,6 +3,8 @@ import { getUsers, login, register,Logout, ForgotPassword, ResetPassword } from 
 import { verifyToken } from "../middleware/verifyToken.js";
 import { refreshToken, refreshTokenRegister } from "../controllers/refreshToken.js";
 import { LogoutAdmin, getAdmins, loginAdmin, registerAdmin } from "../controllers/admins.js";
+import { createKelas, deleteKelas, getKelas, updateKelas } from "../controllers/kelas/kelas.js";
+import { createGuru, deleteGuru, getGuru, updateGuru } from "../controllers/guru/guruis.js";
 const router = express.Router();
 
 //siswa
@@ -20,6 +22,19 @@ router.post('/admin-login',loginAdmin);
 router.post('/admin-register',registerAdmin);
 router.delete('/admin-logout', LogoutAdmin);
 router.get('/admin-token', refreshTokenRegister);
+
+//kelas
+router.post('/kelas',createKelas)
+router.get('/kelas',getKelas)
+router.put('/kelas/:id',updateKelas)
+router.delete('/kelas/:id',deleteKelas)
+
+
+//guru
+router.post('/guru',createGuru)
+router.get('/guru',getGuru)
+router.put('/guru/:id', updateGuru);
+router.delete('/guru/:id', deleteGuru);
 
 
 

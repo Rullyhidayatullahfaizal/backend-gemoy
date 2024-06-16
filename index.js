@@ -6,12 +6,14 @@ import db from "./config/database.js";
 import router from "./routes/index.js";
 import Admin from "./models/adminModel.js";
 import bodyParser from "body-parser";
+import Guruis from "./models/guruModel.js";
+import Kelas from "./models/kelasModel.js";
 dotenv.config()
 const app = express();
 try {
     await db.authenticate();
     console.log("database connected");
-    await Admin.sync()
+    await Kelas.sync()
 } catch (error) {
     console.error(error)
 }
