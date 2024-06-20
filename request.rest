@@ -5,17 +5,19 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZX
 
 
 ###
-POST http://localhost:5000/admin-register
+POST http://localhost:5000/users
 Content-Type: application/json
 
 {
   "username":"ganjar",
+  "email":"ganjar@gmail.com",
+  "nama_kelas":"bahasa indonesia",
   "password":"123456",
   "confPassword":"123456"
 }
 
 ###
-POST http://localhost:5000/admin-login
+POST http://localhost:5000/login
 Content-Type: application/json
 
 {

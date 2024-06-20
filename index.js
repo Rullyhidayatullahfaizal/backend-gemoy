@@ -18,7 +18,21 @@ try {
     console.error(error)
 }
 
-app.use(cors({credentials:true, origin:"http://localhost:3000"}))
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000','http://127.0.0.1:52701'];
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Cek apakah origin ada di daftar yang diizinkan
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+};
+
+app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(express.json());
