@@ -8,12 +8,17 @@ import Admin from "./models/adminModel.js";
 import bodyParser from "body-parser";
 import Guruis from "./models/guruModel.js";
 import Kelas from "./models/kelasModel.js";
+import makanans from "./models/makananModel.js";
+import path from "path"
 dotenv.config()
 const app = express();
+const __dirname = path.resolve();
+
+
 try {
     await db.authenticate();
     console.log("database connected");
-    await Kelas.sync()
+    await makanans.sync()
 } catch (error) {
     console.error(error)
 }
@@ -37,6 +42,9 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(express.json());
 app.use(router);
+
+// Serve static files (for uploaded images)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.listen(5000, () => console.log('running serting to port 5000'));

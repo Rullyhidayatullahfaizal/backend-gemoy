@@ -5,6 +5,8 @@ import { refreshToken, refreshTokenRegister } from "../controllers/refreshToken.
 import { LogoutAdmin, getAdmins, loginAdmin, registerAdmin } from "../controllers/admins.js";
 import { createKelas, deleteKelas, getKelas, updateKelas } from "../controllers/kelas/kelas.js";
 import { createGuru, deleteGuru, getGuru, updateGuru } from "../controllers/guru/guruis.js";
+import { createMakanan, deleteMakanan, getMakanan, getMakananById, updateMakanan } from "../controllers/makanan/maknanan.js";
+import upload from "../config/multerConfig.js";
 const router = express.Router();
 
 //siswa
@@ -36,6 +38,13 @@ router.get('/guru',getGuru)
 router.put('/guru/:id', updateGuru);
 router.delete('/guru/:id', deleteGuru);
 
+
+//makanan
+router.get('/makanan', getMakanan);
+router.get('/makanan/:id', getMakananById);
+router.post('/makanan', upload.single('image'), createMakanan);
+router.put('/makanan/:id', upload.single('image'), updateMakanan);
+router.delete('/makanan/:id', deleteMakanan);
 
 
 
