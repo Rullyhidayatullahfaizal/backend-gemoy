@@ -10,6 +10,9 @@ import Guruis from "./models/guruModel.js";
 import Kelas from "./models/kelasModel.js";
 import makanans from "./models/makananModel.js";
 import path from "path"
+import ScanHistory from "./models/barcodeModel.js";
+import Users from "./models/userModel.js";
+
 dotenv.config()
 const app = express();
 const __dirname = path.resolve();
@@ -18,16 +21,16 @@ const __dirname = path.resolve();
 try {
     await db.authenticate();
     console.log("database connected");
-    await makanans.sync()
+    await ScanHistory.sync()
 } catch (error) {
     console.error(error)
 }
 
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000','http://127.0.0.1:52701'];
+// Update with the correct Flutter port and IP
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000', 'http://localhost:59171'];
 
 const corsOptions = {
     origin: (origin, callback) => {
-        // Cek apakah origin ada di daftar yang diizinkan
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {

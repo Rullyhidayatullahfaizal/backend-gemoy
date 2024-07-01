@@ -4,6 +4,11 @@ import db from "../config/database.js";
 const { DataTypes } = Sequelize;
 
 const makanans = db.define("makanan", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,

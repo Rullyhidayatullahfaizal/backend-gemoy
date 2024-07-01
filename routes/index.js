@@ -7,6 +7,7 @@ import { createKelas, deleteKelas, getKelas, updateKelas } from "../controllers/
 import { createGuru, deleteGuru, getGuru, updateGuru } from "../controllers/guru/guruis.js";
 import { createMakanan, deleteMakanan, getMakanan, getMakananById, updateMakanan } from "../controllers/makanan/maknanan.js";
 import upload from "../config/multerConfig.js";
+import { createQr, getLaporan, getLaporanByUserId, pindaiQr } from "../controllers/bardcode/barcode.js";
 const router = express.Router();
 
 //siswa
@@ -46,8 +47,11 @@ router.post('/makanan', upload.single('image'), createMakanan);
 router.put('/makanan/:id', upload.single('image'), updateMakanan);
 router.delete('/makanan/:id', deleteMakanan);
 
-
-
+//barcode
+router.post('/scan',pindaiQr)
+router.get('/report',getLaporan)
+router.get('/report/:userId',getLaporanByUserId)
+router.post('/api/generator-code',createQr)
 
 
 

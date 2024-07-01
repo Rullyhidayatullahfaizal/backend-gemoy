@@ -9,8 +9,8 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "username":"ganjar",
-  "email":"ganjar@gmail.com",
+  "username":"towel",
+  "email":"towel@gmail.com",
   "nama_kelas":"bahasa indonesia",
   "password":"123456",
   "confPassword":"123456"
@@ -21,7 +21,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "username":"ganjar",
+  "username":"towel",
   "password":"123456"
 }
 
