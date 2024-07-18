@@ -45,6 +45,7 @@ export const pindaiQr = async (req, res) => {
 
         
         const formattedReports = reports.map(report => ({
+          id:report.id,
           description: report.description,
           foodName: report.makanan.name,
           studentUsername: report.user.username,

@@ -9,9 +9,9 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "username":"towel",
-  "email":"towel@gmail.com",
-  "nama_kelas":"bahasa indonesia",
+  "username":"coach justin",
+  "email":"justin221@gmail.com",
+  "nama_kelas":"taktik penjas",
   "password":"123456",
   "confPassword":"123456"
 }
@@ -21,7 +21,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "username":"towel",
+  "username":"coach justin",
   "password":"123456"
 }
 

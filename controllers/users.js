@@ -10,7 +10,7 @@ export const getUsers = async(req,res) => {
     try {
         const users = await Users.findAll({
             attributes:[
-                "id","username","email","nama_kelas"
+                "id","username","email","nama_kelas","createdAt"
             ]
         });
         res.json(users)

@@ -28,7 +28,7 @@ export const loginAdmin = async(req, res) => {
         const userId = user[0].id;
         const username = user[0].name;
         const accessToken = jwt.sign({userId, username,}, process.env.ACCESS_TOKEN_SECRET,{
-            expiresIn: '60s'
+            expiresIn: '10000s'
         });
         const refreshToken = jwt.sign({userId, username,}, process.env.REFRESH_TOKEN_SECRET,{
             expiresIn: '1d'
