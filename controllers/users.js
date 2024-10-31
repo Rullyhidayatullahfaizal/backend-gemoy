@@ -2,7 +2,6 @@ import Users from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import { kirimEmail } from '../helpers/index.js';
-import { where } from "sequelize";
 
 
 
@@ -49,7 +48,7 @@ export const login = async(req, res) => {
         const userId = user[0].id;
         const username = user[0].name;
         const accessToken = jwt.sign({userId, username,}, process.env.ACCESS_TOKEN_SECRET,{
-            expiresIn: '60s'
+            expiresIn: '6000s'
         });
         const refreshToken = jwt.sign({userId, username,}, process.env.REFRESH_TOKEN_SECRET,{
             expiresIn: '1d'
@@ -95,10 +94,8 @@ export const ForgotPassword = async (req, res) => {
     try {
       console.log("Email yang diterima:", email);
   
-      // Mencari pengguna berdasarkan email
       const user = await Users.findOne({ where: { email: email } });
   
-      // Log untuk memeriksa apakah pengguna ditemukan
       if (!user) {
         console.log("Pengguna tidak ditemukan");
         return res.status(404).json({ 
@@ -116,17 +113,16 @@ export const ForgotPassword = async (req, res) => {
       );
 
       const templateEmail = {
-        from : "Gemoy aplikasi",
+        from : "Tes Full Stack",
         to : email,
         subject :"Link reset Password",
         html :`<p> silahkan klik link dibawah ini untuk reset password</p><p>${process.env.CLIENT_URL}/resetpassword/${token}</p>`
       }
       kirimEmail(templateEmail) 
-      // Log untuk memeriksa email pengguna yang ditemukan
       return res.status(200).json({
         status : true,
         message: "link terkirim",
-        // email: user.email  // Mengirimkan hanya email dalam respons
+        // email: user.email  
       });
     } catch (error) {
       console.error("Error:", error);

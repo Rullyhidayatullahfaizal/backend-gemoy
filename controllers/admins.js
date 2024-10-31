@@ -48,6 +48,11 @@ export const loginAdmin = async(req, res) => {
     }
 }
 
+
+
+
+
+
 export const registerAdmin = async(req,res) => {
     const {username,password,confPassword} = req.body;
     if(password != confPassword) return res.status(400).json({msg:"password dan confirm password tidak cocok"});

@@ -6,11 +6,8 @@ import db from "./config/database.js";
 import router from "./routes/index.js";
 import Admin from "./models/adminModel.js";
 import bodyParser from "body-parser";
-import Guruis from "./models/guruModel.js";
-import Kelas from "./models/kelasModel.js";
 import makanans from "./models/makananModel.js";
 import path from "path"
-import ScanHistory from "./models/barcodeModel.js";
 import Users from "./models/userModel.js";
 
 dotenv.config()
@@ -21,13 +18,13 @@ const __dirname = path.resolve();
 try {
     await db.authenticate();
     console.log("database connected");
-    await ScanHistory.sync()
+    // await makanans.sync()
 } catch (error) {
     console.error(error)
 }
 
 // Update with the correct Flutter port and IP
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000', 'http://localhost:59171'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000', 'http://localhost:59171','http://localhost:3001'];
 
 const corsOptions = {
     origin: (origin, callback) => {

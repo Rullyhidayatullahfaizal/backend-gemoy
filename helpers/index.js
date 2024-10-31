@@ -4,10 +4,10 @@ export const kirimEmail = (dataEmail) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
+        secure: false, 
         requireTLS:true,
         auth: {
-          user: "abrartaufik58@gmail.com",
+          user: "#",
           pass: "jn7jnAPss4f63QBp6D",
         },
       });

@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "bb2d978c-b30f-47b3-a291-5ac1f9a8f5e8",
+		"name": "belajaraws",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29320075"
+	},
+	"item": [
+		{
+			"name": "add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"testingamazon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/guru",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"guru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test('response body should an object', () => {\r",
+							"    const responseJson = pm.response.json()\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an('array')\r",
+							"})\r",
+							"\r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson[0]).to.have.property('name');\r",
+							"    pm.expect(responseJson[0]).to.have.property('id');\r",
+							"    pm.expect(responseJson[0]).to.have.property('createdAt');\r",
+							"    pm.expect(responseJson[0]).to.have.property('updatedAt');    \r",
+							"}); \r",
+							"\r",
+							"pm.test('response body should contain at least 1 guru', () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an('array');\r",
+							"    pm.expect(responseJson).to.have.lengthOf.at.least(1);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/guru",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"guru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"}); \r",
+							"\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test('response body should an object', () => {\r",
+							"    const responseJson = pm.response.json()\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an('object')\r",
+							"})\r",
+							"\r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('createdAt');\r",
+							"    pm.expect(responseJson).to.have.property('updatedAt');    \r",
+							"}); \r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"luffy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/guru/{{guruid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"guru",
+						"{{guruid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/guru/{{guruid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"guru",
+						"{{guruid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
